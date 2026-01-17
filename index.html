@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DawnScape Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/logo.png" alt="DawnScape" style="height:32px;" class="mr-2">
+      DawnScape
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=perks">Perks</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=ranks">Donator Ranks</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=cosmetics">Cosmetics</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=credits">Store Credits</a></li>
+      </ul>
+
+      <a href="#" class="btn btn-outline-light">
+        Cart (0)
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="jumbotron jumbotron-dark text-center">
+    <img src="assets/logo.png" alt="DawnScape" class="img-fluid mb-3" style="max-height:120px;">
+    <h1 class="display-4">DawnScape Store</h1>
+    <p class="lead">Support the server and unlock powerful perks, ranks, and cosmetics.</p>
+    <a href="#popular" class="btn btn-primary btn-lg mt-2">Browse Popular Items</a>
+  </div>
+
+  <h3 id="popular" class="mb-3">Popular Products</h3>
+  <div class="row">
+
+    <!-- Example product cards (static for GitHub version) -->
+    <div class="col-md-3 mb-4">
+      <div class="card h-100 product-card shadow-sm">
+        <img src="assets/banner.jpg" class="card-img-top" alt="Bronze Donator">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Bronze Donator</h5>
+          <span class="badge badge-danger mb-2">-20%</span>
+          <p class="mt-auto mb-2 font-weight-bold">$5.00</p>
+          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+             data-title="Bronze Donator" data-body="Entry-level donator rank with small boosts.">
+            Info
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100 product-card shadow-sm">
+        <img src="assets/banner.jpg" class="card-img-top" alt="Sponsor Donator">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Sponsor Donator</h5>
+          <span class="badge badge-danger mb-2">-10%</span>
+          <p class="mt-auto mb-2 font-weight-bold">$150.00</p>
+          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+             data-title="Sponsor Donator" data-body="Top-tier rank with maximum benefits.">
+            Info
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100 product-card shadow-sm">
+        <img src="assets/banner.jpg" class="card-img-top" alt="Bank Command Perk">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Bank Command Perk</h5>
+          <p class="mt-auto mb-2 font-weight-bold">$20.00</p>
+          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+             data-title="Bank Command Perk" data-body="Access your bank anywhere with a command.">
+            Info
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card h-100 product-card shadow-sm">
+        <img src="assets/banner.jpg" class="card-img-top" alt="10 Store Credits">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">10 Store Credits</h5>
+          <p class="mt-auto mb-2 font-weight-bold">$5.00</p>
+          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+             data-title="10 Store Credits" data-body="Use credits to purchase any item in the store.">
+            Info
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="mt-5 mb-4">
+
+  <footer class="text-center text-muted mb-4">
+    <small>&copy; <span id="year"></span> DawnScape. All rights reserved.</small>
+  </footer>
+</div>
+
+<!-- Product Info Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productModalTitle">Product Info</h5>
+        <button type="button" class="close text-light" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="productModalBody">
+        Loading...
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Modal dynamic content
+  $('#productModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var title = button.data('title');
+    var body = button.data('body');
+    $('#productModalTitle').text(title);
+    $('#productModalBody').text(body);
+  });
+</script>
+</body>
+</html>
