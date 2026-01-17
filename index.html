@@ -1,22 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>DawnScape Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+
+  <!-- PREMIUM THEME (inline so it's plug-and-play) -->
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --card:#0F1730;
+      --card2:#0C1328;
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.55);
+      --line:rgba(255,255,255,.08);
+      --gold1:#F6D37A;
+      --gold2:#D9A441;
+      --aqua1:#7FFFD4;
+      --aqua2:#2EE0FF;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 35px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 14px;
+    }
+
+    html,body{height:100%;}
+    body{
+      background:
+        radial-gradient(1200px 700px at 15% 5%, rgba(46,224,255,.12), transparent 60%),
+        radial-gradient(900px 550px at 85% 10%, rgba(246,211,122,.10), transparent 55%),
+        radial-gradient(1200px 800px at 50% 110%, rgba(127,255,212,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* subtle star noise */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.06) 0 1px, transparent 2px),
+        radial-gradient(circle at 60% 35%, rgba(255,255,255,.05) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.045) 0 1px, transparent 2px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.04) 0 1px, transparent 2px);
+      background-size: 420px 420px, 520px 520px, 620px 620px, 720px 720px;
+      opacity:.9;
+    }
+
+    /* NAV */
+    .ds-nav{
+      background: rgba(8,10,18,.55) !important;
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .navbar-brand{
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      display:flex;
+      align-items:center;
+    }
+    .navbar-brand small{
+      display:block;
+      font-weight:800;
+      font-size:11px;
+      letter-spacing:.8px;
+      color:var(--muted2);
+      margin-top:-2px;
+      text-transform:none;
+    }
+    .nav-link{
+      color: rgba(234,240,255,.85) !important;
+      font-weight: 800;
+      letter-spacing:.15px;
+      opacity:.92;
+    }
+    .nav-link:hover{opacity:1;}
+    .ds-pill{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding:.52rem .9rem;
+      font-weight:900;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      background: rgba(12,19,40,.55);
+    }
+    .ds-pill:hover{
+      border-color: rgba(246,211,122,.35);
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .ds-hero{
+      position:relative;
+      border-radius: 26px;
+      padding: 44px 22px;
+      background:
+        radial-gradient(900px 420px at 18% 25%, rgba(46,224,255,.16), transparent 60%),
+        radial-gradient(800px 420px at 84% 15%, rgba(246,211,122,.14), transparent 60%),
+        linear-gradient(180deg, rgba(15,23,48,.85), rgba(10,15,30,.75));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .ds-hero:after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(90deg, rgba(246,211,122,.18), rgba(46,224,255,.12), rgba(127,255,212,.12));
+      filter: blur(28px);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .ds-hero-inner{ position:relative; z-index:2; }
+
+    .ds-title{
+      font-weight: 950;
+      letter-spacing:.2px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .ds-sub{
+      color: var(--muted);
+      max-width: 820px;
+      margin: 0 auto 18px auto;
+      font-size: 1.08rem;
+    }
+
+    .ds-cta{
+      font-weight: 950;
+      letter-spacing:.2px;
+      border-radius: 999px;
+      padding: .9rem 1.25rem;
+      border:none;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      color: #1a1305;
+      box-shadow: 0 18px 45px rgba(217,164,65,.22);
+    }
+    .ds-cta:hover{ transform: translateY(-1px); }
+
+    .ds-cta2{
+      font-weight: 900;
+      border-radius: 999px;
+      padding: .85rem 1.15rem;
+      background: rgba(12,19,40,.55);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(234,240,255,.9);
+    }
+    .ds-cta2:hover{
+      border-color: rgba(46,224,255,.35);
+      transform: translateY(-1px);
+    }
+
+    /* SECTION */
+    .ds-section-title{
+      font-weight: 950;
+      letter-spacing:.2px;
+      text-transform: uppercase;
+    }
+    .ds-section-sub{
+      color: var(--muted2);
+      margin-top:-6px;
+    }
+
+    /* PRODUCT CARDS */
+    .product-card{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(15,23,48,.92), rgba(10,15,30,.88));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .product-card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(246,211,122,.32);
+      box-shadow: 0 22px 70px rgba(0,0,0,.60);
+    }
+    .product-card .card-img-top{
+      height: 160px;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .ds-card-top{
+      position:relative;
+      background: linear-gradient(135deg, rgba(11,16,32,.9), rgba(26,42,74,.75));
+    }
+    .ds-badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-weight: 950;
+      letter-spacing:.2px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(8,10,18,.55);
+      color: rgba(234,240,255,.92);
+      backdrop-filter: blur(10px);
+    }
+    .ds-badge--deal{
+      border-color: rgba(246,211,122,.45);
+      box-shadow: 0 10px 22px rgba(217,164,65,.15);
+    }
+
+    .card-title{
+      font-weight: 950;
+      letter-spacing:.15px;
+      margin-bottom: 8px;
+    }
+    .ds-price{
+      font-weight: 950;
+      font-size: 1.05rem;
+      letter-spacing:.2px;
+    }
+    .ds-muted{
+      color: var(--muted2);
+      font-size:.95rem;
+    }
+
+    .btn-primary{
+      font-weight: 950;
+      letter-spacing:.15px;
+      border:none;
+      border-radius: 12px;
+      padding: .72rem 1rem;
+      background: linear-gradient(90deg, var(--aqua1), var(--aqua2));
+      color: #061018;
+      box-shadow: 0 16px 40px rgba(46,224,255,.16);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); }
+
+    .btn-secondary{
+      font-weight: 900;
+      letter-spacing:.1px;
+      border-radius: 12px;
+      padding: .72rem 1rem;
+      background: rgba(12,19,40,.65);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(234,240,255,.9);
+    }
+    .btn-secondary:hover{
+      border-color: rgba(127,255,212,.35);
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    .ds-footer{
+      border-top: 1px solid var(--line);
+      color: var(--muted2);
+      padding: 18px 0;
+    }
+    .ds-footer a{color: rgba(234,240,255,.85); font-weight:900;}
+    .ds-footer a:hover{color: white; text-decoration:none;}
+
+    /* MODAL */
+    .modal-content{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(15,23,48,.96), rgba(10,15,30,.92));
+      box-shadow: var(--shadow);
+    }
+    .modal-header{
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    /* SMALL LUXURY DETAILS */
+    .ds-kpi{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .ds-kpi .k{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(12,19,40,.35);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+      color: rgba(234,240,255,.9);
+      backdrop-filter: blur(10px);
+    }
+    .ds-kpi .k span{ color: var(--muted2); font-weight:800; margin-left:6px; }
+
+    @media (max-width: 991px){
+      .ds-hero{ padding: 36px 18px; }
+      .product-card .card-img-top{ height: 150px; }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-dark ds-nav mb-4">
   <div class="container">
     <a class="navbar-brand" href="index.html">
-      <img src="assets/logo.png" alt="DawnScape" style="height:32px;" class="mr-2">
-      DawnScape
+      <img src="assets/logo.png" alt="DawnScape" style="height:34px;" class="mr-2">
+      <div>
+        DawnScape
+        <small>Official Webstore</small>
+      </div>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
@@ -25,113 +316,198 @@
 
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="category.html?cat=perks">Perks</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=perks">Perks & Upgrades</a></li>
         <li class="nav-item"><a class="nav-link" href="category.html?cat=ranks">Donator Ranks</a></li>
-        <li class="nav-item"><a class="nav-link" href="category.html?cat=cosmetics">Cosmetics</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=boxes">Boxes & Crates</a></li>
+        <li class="nav-item"><a class="nav-link" href="category.html?cat=pets">Legendary Pets</a></li>
         <li class="nav-item"><a class="nav-link" href="category.html?cat=credits">Store Credits</a></li>
       </ul>
 
-      <a href="#" class="btn btn-outline-light">
-        Cart (0)
+      <a href="#" class="ds-pill text-white btn">
+        Cart <span class="ml-1" style="opacity:.85;">(0)</span>
       </a>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <div class="jumbotron jumbotron-dark text-center">
-    <img src="assets/logo.png" alt="DawnScape" class="img-fluid mb-3" style="max-height:120px;">
-    <h1 class="display-4">DawnScape Store</h1>
-    <p class="lead">Support the server and unlock powerful perks, ranks, and cosmetics.</p>
-    <a href="#popular" class="btn btn-primary btn-lg mt-2">Browse Popular Items</a>
+
+  <!-- HERO -->
+  <div class="ds-hero text-center mb-4">
+    <div class="ds-hero-inner">
+      <img src="assets/logo.png" alt="DawnScape" class="img-fluid mb-3" style="max-height:120px;">
+      <h1 class="ds-title display-4 mb-2">DawnScape Store</h1>
+      <p class="ds-sub">
+        Premium rewards. Instant delivery. Support the server and unlock exclusive ranks, perks, pets and crates.
+      </p>
+
+      <div class="d-flex justify-content-center flex-wrap" style="gap:10px;">
+        <a href="#popular" class="ds-cta btn btn-lg">Browse Popular</a>
+        <a href="https://discord.gg/df4KahPufe" target="_blank" rel="noopener" class="ds-cta2 btn btn-lg">Discord Support</a>
+        <a href="https://www.rsps-list.com/index.php?a=in&u=therspsboss" target="_blank" rel="noopener" class="ds-cta2 btn btn-lg">Vote</a>
+        <a href="https://www.dropbox.com/scl/fi/qzzhqd7khlii25nirlob6/DawnScape-RSPS.jar?rlkey=ervdwg8uo9ii2jpsayso2p9eq&st=o4winaro&dl=0"
+           target="_blank" rel="noopener" class="ds-cta2 btn btn-lg">Download Client</a>
+      </div>
+
+      <div class="ds-kpi">
+        <div class="k">Instant Delivery <span>via claim</span></div>
+        <div class="k">Secure Checkout <span>PayPal / GPAY</span></div>
+        <div class="k">24/7 Support <span>Discord tickets</span></div>
+      </div>
+    </div>
   </div>
 
-  <h3 id="popular" class="mb-3">Popular Products</h3>
+  <!-- SECTION HEADER -->
+  <div class="d-flex align-items-end justify-content-between flex-wrap mb-3" style="gap:10px;">
+    <div>
+      <h3 id="popular" class="ds-section-title mb-1">Popular Products</h3>
+      <div class="ds-section-sub">Hand-picked best sellers for DawnScape players.</div>
+    </div>
+    <div class="d-flex" style="gap:10px;">
+      <a class="btn btn-secondary" href="category.html?cat=ranks">View Ranks</a>
+      <a class="btn btn-secondary" href="category.html?cat=perks">View Perks</a>
+    </div>
+  </div>
+
   <div class="row">
 
     <!-- Example product cards (static for GitHub version) -->
     <div class="col-md-3 mb-4">
-      <div class="card h-100 product-card shadow-sm">
-        <img src="assets/banner.jpg" class="card-img-top" alt="Bronze Donator">
+      <div class="card h-100 product-card">
+        <div class="ds-card-top">
+          <span class="ds-badge ds-badge--deal">BEST VALUE</span>
+          <img src="assets/banner.jpg" class="card-img-top" alt="Bronze Donator">
+        </div>
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">Bronze Donator</h5>
-          <span class="badge badge-danger mb-2">-20%</span>
-          <p class="mt-auto mb-2 font-weight-bold">$5.00</p>
-          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
-          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
-             data-title="Bronze Donator" data-body="Entry-level donator rank with small boosts.">
-            Info
-          </a>
+          <div class="ds-muted mb-2">Entry rank with early perks & commands.</div>
+          <div class="mt-auto">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="ds-price">$5.00</div>
+              <span class="badge" style="background:rgba(246,211,122,.15); border:1px solid rgba(246,211,122,.35); color:rgba(234,240,255,.92); border-radius:999px; padding:7px 10px; font-weight:900;">
+                Limited
+              </span>
+            </div>
+            <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+            <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+               data-title="Bronze Donator"
+               data-body="Entry-level donator rank with quality-of-life boosts, starter commands and small perks. Perfect for new supporters.">
+              View Details
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="col-md-3 mb-4">
-      <div class="card h-100 product-card shadow-sm">
-        <img src="assets/banner.jpg" class="card-img-top" alt="Sponsor Donator">
+      <div class="card h-100 product-card">
+        <div class="ds-card-top">
+          <span class="ds-badge">PREMIUM</span>
+          <img src="assets/banner.jpg" class="card-img-top" alt="Sponsor Donator">
+        </div>
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">Sponsor Donator</h5>
-          <span class="badge badge-danger mb-2">-10%</span>
-          <p class="mt-auto mb-2 font-weight-bold">$150.00</p>
-          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
-          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
-             data-title="Sponsor Donator" data-body="Top-tier rank with maximum benefits.">
-            Info
-          </a>
+          <div class="ds-muted mb-2">Top tier status with maximum benefits.</div>
+          <div class="mt-auto">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="ds-price">$150.00</div>
+              <span class="badge" style="background:rgba(46,224,255,.12); border:1px solid rgba(46,224,255,.30); color:rgba(234,240,255,.92); border-radius:999px; padding:7px 10px; font-weight:900;">
+                Elite
+              </span>
+            </div>
+            <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+            <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+               data-title="Sponsor Donator"
+               data-body="Ultimate donator tier: premium commands, exclusive perks, high-value bonuses and prestige status.">
+              View Details
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="col-md-3 mb-4">
-      <div class="card h-100 product-card shadow-sm">
-        <img src="assets/banner.jpg" class="card-img-top" alt="Bank Command Perk">
+      <div class="card h-100 product-card">
+        <div class="ds-card-top">
+          <span class="ds-badge">QOL</span>
+          <img src="assets/banner.jpg" class="card-img-top" alt="Bank Command Perk">
+        </div>
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Bank Command Perk</h5>
-          <p class="mt-auto mb-2 font-weight-bold">$20.00</p>
-          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
-          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
-             data-title="Bank Command Perk" data-body="Access your bank anywhere with a command.">
-            Info
-          </a>
+          <h5 class="card-title">Bank Command</h5>
+          <div class="ds-muted mb-2">Access your bank anywhere with a command.</div>
+          <div class="mt-auto">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="ds-price">$20.00</div>
+              <span class="badge" style="background:rgba(127,255,212,.12); border:1px solid rgba(127,255,212,.30); color:rgba(234,240,255,.92); border-radius:999px; padding:7px 10px; font-weight:900;">
+                Popular
+              </span>
+            </div>
+            <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+            <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+               data-title="Bank Command"
+               data-body="Unlock a premium command that lets you open your bank from almost anywhere. Massive time saver for PvM and skilling.">
+              View Details
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="col-md-3 mb-4">
-      <div class="card h-100 product-card shadow-sm">
-        <img src="assets/banner.jpg" class="card-img-top" alt="10 Store Credits">
+      <div class="card h-100 product-card">
+        <div class="ds-card-top">
+          <span class="ds-badge">FLEX</span>
+          <img src="assets/banner.jpg" class="card-img-top" alt="10 Store Credits">
+        </div>
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">10 Store Credits</h5>
-          <p class="mt-auto mb-2 font-weight-bold">$5.00</p>
-          <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
-          <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
-             data-title="10 Store Credits" data-body="Use credits to purchase any item in the store.">
-            Info
-          </a>
+          <div class="ds-muted mb-2">Use credits toward any item in the store.</div>
+          <div class="mt-auto">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="ds-price">$5.00</div>
+              <span class="badge" style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); color:rgba(234,240,255,.88); border-radius:999px; padding:7px 10px; font-weight:900;">
+                Any Item
+              </span>
+            </div>
+            <a href="#" class="btn btn-primary btn-block mb-2">Add to Cart</a>
+            <a href="#" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#productModal"
+               data-title="Store Credits"
+               data-body="Store credits can be redeemed for ranks, perks, crates, and more. Ideal for flexible purchases.">
+              View Details
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <hr class="mt-5 mb-4">
+  <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,.10);">
 
-  <footer class="text-center text-muted mb-4">
-    <small>&copy; <span id="year"></span> DawnScape. All rights reserved.</small>
+  <footer class="ds-footer text-center mb-4">
+    <div class="mb-1">
+      <small>&copy; <span id="year"></span> DawnScape. All rights reserved.</small>
+    </div>
+    <div class="small">
+      Need help? <a href="https://discord.gg/df4KahPufe" target="_blank" rel="noopener">Open a Discord ticket</a>
+      &nbsp;•&nbsp;
+      Use the exact in-game name when purchasing.
+    </div>
   </footer>
+
 </div>
 
 <!-- Product Info Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content bg-dark text-light">
+    <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="productModalTitle">Product Info</h5>
-        <button type="button" class="close text-light" data-dismiss="modal">
-          <span>&times;</span>
+        <h5 class="modal-title" id="productModalTitle" style="font-weight:950;">Product Info</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="productModalBody">
+      <div class="modal-body" id="productModalBody" style="color: rgba(234,240,255,.85);">
         Loading...
       </div>
     </div>
