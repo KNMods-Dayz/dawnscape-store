@@ -1,0 +1,60 @@
+body {
+  background-color: #050608;
+  color: #e6e6e6;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+.jumbotron-dark {
+  background: radial-gradient(circle at top, #1b2735 0, #090a0f 60%);
+  color: #f5f5f5;
+  border-radius: 0.75rem;
+  border: 1px solid #222;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.product-card {
+  background-color: #111318;
+  border: 1px solid #262a33;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
+  border-color: #3a7bd5;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.badge-danger {
+  background-color: #d9534f;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #336bbd, #00b8e0);
+}
+
+.btn-secondary {
+  background-color: #343a40;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #23272b;
+}
+
+footer {
+  color: #888;
+}
