@@ -1,1 +1,20 @@
-
+const PRODUCTS = {
+    70000: {
+        name: "250 Credits",
+        price: 250,
+        category: "credits",
+        image: "assets/icons/credits.png"
+    },
+    70010: {
+        name: "Common Mystery Box",
+        price: 500,
+        category: "mystery",
+        image: "assets/boxes/common.png"
+    },
+    70060: {
+        name: "Combat Perk Pack",
+        price: 8700,
+        category: "perks",
+        image: "assets/perks/combat.png"
+    }
+};
