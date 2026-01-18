@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DawnScape Store – Products</title>
+    <title>DawnScape Store</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <header class="ds-header">
     <div class="ds-header-left">
         <a href="index.html" class="ds-logo-link">
@@ -14,30 +15,42 @@
         </a>
     </div>
     <nav class="ds-nav">
-        <a href="#perks">Perks &amp; Upgrades</a>
-        <a href="#ranks">Donator Ranks</a>
-        <a href="#boxes">Boxes &amp; Crates</a>
-        <a href="#pets">Legendary Pets</a>
-        <a href="#credits">Store Credits</a>
-        <a href="#cart" class="ds-cart-link">Cart (0)</a>
+        <a href="index.html">Home</a>
+        <a href="store.html">Store</a>
+        <a href="#">Download Client</a>
+        <a href="#">Hiscores</a>
+        <a href="#">Discord</a>
     </nav>
 </header>
 
 <main class="ds-main">
+    <section class="ds-hero ds-hero-small">
+        <div class="ds-hero-content">
+            <h1 class="ds-hero-title">DawnScape Store</h1>
+            <p class="ds-hero-subtitle">
+                Premium rewards. Instant delivery. Support the server and unlock exclusive ranks, perks, pets and crates.
+            </p>
+            <div class="ds-hero-actions">
+                <a href="#grid" class="ds-btn ds-btn-primary">Browse Store</a>
+            </div>
+        </div>
+        <div class="ds-hero-glow"></div>
+    </section>
+
     <section class="ds-section">
         <h2 class="ds-section-title">Browse Store</h2>
         <div class="ds-category-tabs">
             <button data-category="all" class="active">All</button>
-            <button data-category="credits" id="credits">Credits</button>
-            <button data-category="perks" id="perks">Perks</button>
-            <button data-category="ranks" id="ranks">Ranks</button>
-            <button data-category="mystery" id="boxes">Boxes</button>
-            <button data-category="pets" id="pets">Pets</button>
+            <button data-category="credits">Credits</button>
+            <button data-category="perks">Perks</button>
+            <button data-category="ranks">Ranks</button>
+            <button data-category="mystery">Boxes</button>
+            <button data-category="pets">Pets</button>
             <button data-category="bundles">Bundles</button>
             <button data-category="utility">Utility</button>
             <button data-category="seasonal">Seasonal</button>
         </div>
-        <div id="product-grid" class="ds-grid"></div>
+        <div id="product-grid" class="ds-grid" id="grid"></div>
     </section>
 </main>
 
