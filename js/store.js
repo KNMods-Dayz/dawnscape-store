@@ -17,7 +17,7 @@ function renderProducts(category = "all") {
             <div class="ds-card-category">${p.category}</div>
             <div class="ds-card-price">${p.price.toLocaleString()} Credits</div>
             <div class="ds-card-actions">
-                <a href="product.html?id=${id}" class="ds-card-view">View</a>
+                <a href="product.html?id=${id}" class="ds-btn ds-btn-ghost">View</a>
             </div>
         `;
         grid.appendChild(card);
