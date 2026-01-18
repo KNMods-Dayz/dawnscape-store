@@ -1,5 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DawnScape Store – Products</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="ds-header">
+    <div class="ds-header-left">
+        <a href="index.html" class="ds-logo-link">
+            <img src="assets/logo.png" alt="DawnScape" class="ds-logo">
+            <span class="ds-title">DawnScape</span>
+        </a>
+    </div>
+    <nav class="ds-nav">
+        <a href="#perks">Perks &amp; Upgrades</a>
+        <a href="#ranks">Donator Ranks</a>
+        <a href="#boxes">Boxes &amp; Crates</a>
+        <a href="#pets">Legendary Pets</a>
+        <a href="#credits">Store Credits</a>
+        <a href="#cart" class="ds-cart-link">Cart (0)</a>
+    </nav>
+</header>
 
-<div id="product-grid"></div>
+<main class="ds-main">
+    <section class="ds-section">
+        <h2 class="ds-section-title">Browse Store</h2>
+        <div class="ds-category-tabs">
+            <button data-category="all" class="active">All</button>
+            <button data-category="credits" id="credits">Credits</button>
+            <button data-category="perks" id="perks">Perks</button>
+            <button data-category="ranks" id="ranks">Ranks</button>
+            <button data-category="mystery" id="boxes">Boxes</button>
+            <button data-category="pets" id="pets">Pets</button>
+            <button data-category="bundles">Bundles</button>
+            <button data-category="utility">Utility</button>
+            <button data-category="seasonal">Seasonal</button>
+        </div>
+        <div id="product-grid" class="ds-grid"></div>
+    </section>
+</main>
+
+<footer class="ds-footer">
+    <div class="ds-footer-inner">
+        <span>© DawnScape</span>
+        <span>Support the server, unlock more content.</span>
+    </div>
+</footer>
 
 <script src="js/products.js"></script>
 <script src="js/store.js"></script>
+</body>
+</html>
